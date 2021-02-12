@@ -3,7 +3,7 @@ $graph:
   class: CommandLineTool
   hints:
     DockerRequirement:
-      dockerPull: docker.terradue.com/s-expression:dev0.0.2
+      dockerPull: eoepca/s-expression:dev0.0.2
   id: clt
   inputs:
     input_reference:
