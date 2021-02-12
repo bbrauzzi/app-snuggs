@@ -1,6 +1,5 @@
 # s-expression for EO product band math
 
-Snuggs
 
 ## Development 
 
@@ -54,13 +53,13 @@ Options:
 Build the docker image with:
 
 ```bash
-docker build -t s-expression:0.1  -f .docker/Dockerfile .
+docker build -t eoepca/s-expression:dev0.0.2  -f .docker/Dockerfile .
 ```
 
 Test the CLI with:
 
 ```bash
-docker run --rm -it s-expression:0.1 s-expression --help
+docker run --rm -it eoepca/s-expression:dev0.0.2 s-expression --help
 ```
 
 ## Usage
