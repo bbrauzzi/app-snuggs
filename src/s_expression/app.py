@@ -46,7 +46,7 @@ def main(ctx, input_reference, s_expression, cbn):
 
     dump(ctx)
     
-    item = get_item(os.path.join(input_reference, "catalog.json"))
+    item = get_item(input_reference)
 
     logging.info(f"Processing {item.id}")
 
@@ -76,7 +76,7 @@ def main(ctx, input_reference, s_expression, cbn):
         stac_extensions=item.stac_extensions,
     )
 
-    eo_item = extensions.eo.EOItemExt(item_out)
+    #eo_item = extensions.eo.EOItemExt(item_out)
 
     asset_properties = dict()
 
@@ -86,18 +86,18 @@ def main(ctx, input_reference, s_expression, cbn):
         href=os.path.basename(result),
         media_type=MediaType.COG,
         roles=["data"],
-        properties=asset_properties,
+        extra_fields=asset_properties,
     )
 
-    eo_bands = [
-        extensions.eo.Band.create(
-            name=cbn.lower(),
-            common_name=cbn.lower(),
-            description=f"{cbn.lower()} ({s_expression})",
-        )
-    ]
+    #eo_bands = [
+    #    extensions.eo.Band.create(
+    #        name=cbn.lower(),
+    #        common_name=cbn.lower(),
+    #        description=f"{cbn.lower()} ({s_expression})",
+    #    )
+    #]
 
-    eo_item.set_bands(eo_bands, asset=asset)
+    #eo_item.set_bands(eo_bands, asset=asset)
 
     item_out.add_asset(key=cbn.lower(), asset=asset)
 

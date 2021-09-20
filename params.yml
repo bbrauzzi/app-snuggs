@@ -1,0 +1,7 @@
+input_reference:
+- "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a-cogs/items/S2B_53HPA_20210723_0_L2A"
+- "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a-cogs/items/S2B_53HPA_20210713_0_L2A"
+s_expression: 
+- "nbr:(/ (- B05 B02) (+ B05 B02))"
+- "ndvi:(/ (- B05 B03) (+ B05 B03))"
+- "ndwi:(/ (- B06 B03) (+ B06 B03))"

@@ -1,22 +1,27 @@
-from pystac import Catalog, extensions
+from pystac import read_file, Item, Catalog, extensions
 from urllib.parse import urlparse
 import gdal
 
 
-def get_item(catalog):
+def get_item(reference):
 
-    cat = Catalog.from_file(catalog)
+    stac_thing = read_file(reference)
 
-    try:
+    if isinstance(stac_thing, Item):
+        return stac_thing
 
-        collection = next(cat.get_children())
-        item = next(collection.get_items())
+    else:
 
-    except StopIteration:
+        try:
 
-        item = next(cat.get_items())
+            collection = next(stac_thing.get_children())
+            item = next(collection.get_items())
 
-    return item
+        except StopIteration:
+
+            item = next(stac_thing.get_items())
+
+        return item
 
 
 def get_asset(item, band_name):
@@ -24,8 +29,8 @@ def get_asset(item, band_name):
     asset = None
     asset_href = None
 
-    eo_item = extensions.eo.EOItemExt(item)
-
+    eo_item = extensions.eo.EOExtension.ext(item)
+ 
     # Get bands
     if (eo_item.bands) is not None:
 
@@ -36,6 +41,13 @@ def get_asset(item, band_name):
                 asset = item.assets[band.name]
                 asset_href = fix_asset_href(asset.get_absolute_href())
                 break
+
+    # read the asset key (no success with common band name)
+    if asset is None:
+        
+        asset = item.assets[band_name]
+        asset_href = fix_asset_href(asset.get_absolute_href())
+
 
     return (asset, asset_href)
 

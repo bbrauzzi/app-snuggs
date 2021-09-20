@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: s-expression",
+            "type": "python",
+            "request": "launch",
+            "module": "s_expression.app",
+            "args": [
+                "--input_reference",
+                "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a-cogs/items/S2B_53HPA_20210723_0_L2A",
+                "--s-expression",
+                "(/ (- B05 B02) (+ B05 B02))",
+                "--cbn",
+                "nbr"
+            ],
+            "cwd": "${workspaceFolder}/src"
+        }
+    ]
+}
