@@ -46,9 +46,10 @@ jobs:
       - uses: actions/checkout@v2
       - run: echo version ${{needs.version.outputs.app-version}}
       - run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      - run: echo "LC=$( echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]' " >> $GITHUB_ENV
       - name: build & push snuggs image
         run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository.lowercase }}/snuggs
+          IMAGE_ID=docker.pkg.github.com/$LC/snuggs
           docker build . --file Dockerfile --tag snuggs
           docker tag snuggs $IMAGE_ID:${{needs.version.outputs.app-version}}
           docker push $IMAGE_ID:${{needs.version.outputs.app-version}}
