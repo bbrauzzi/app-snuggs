@@ -49,7 +49,7 @@ jobs:
       - name: build & push snuggs image
         run: |
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/snuggs
-          docker build src --file Dockerfile --tag snuggs
+          docker build . --file Dockerfile --tag snuggs
           docker tag snuggs $IMAGE_ID:${{needs.version.outputs.app-version}}
           docker push $IMAGE_ID:${{needs.version.outputs.app-version}}
 
