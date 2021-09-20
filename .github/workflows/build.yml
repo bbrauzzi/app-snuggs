@@ -48,7 +48,7 @@ jobs:
       - run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
       - name: build & push snuggs image
         run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/snuggs
+          IMAGE_ID=docker.pkg.github.com/${{ github.repository.lowercase }}/snuggs
           docker build . --file Dockerfile --tag snuggs
           docker tag snuggs $IMAGE_ID:${{needs.version.outputs.app-version}}
           docker push $IMAGE_ID:${{needs.version.outputs.app-version}}
@@ -63,7 +63,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: yq -i eval '(.$graph[] | select (.id == "clt") ).requirements.DockerRequirement.dockerPull = "docker.pkg.github.com/EOEPCA/app-snuggs/snuggs:${{needs.version.outputs.app-version}}"' app-package.cwl 
+      - run: yq -i eval '(.$graph[] | select (.id == "clt") ).requirements.DockerRequirement.dockerPull = "docker.pkg.github.com/eoepca/app-snuggs/snuggs:${{needs.version.outputs.app-version}}"' app-package.cwl 
       - run: mkdir downloads
       - run: cp app-package.cwl downloads/app-snuggs.${{needs.version.outputs.app-version}}.cwl
       - run: ls downloads/app-snuggs.${{needs.version.outputs.app-version}}.cwl
