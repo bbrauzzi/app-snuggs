@@ -2,7 +2,7 @@ $graph:
 
 - class: Workflow
   doc: Applies s expressions to EO acquisitions
-  id: s-expression
+  id: snuggs
   requirements:
   - class: ScatterFeatureRequirement
   inputs:
@@ -73,6 +73,6 @@ cwlVersion: v1.0
 
 $namespaces:
   s: https://schema.org/
-s:softwareVersion: 0.2.0
+s:softwareVersion: 0.3.0
 schemas:
 - http://schema.org/version/9.0/schemaorg-current-http.rdf
