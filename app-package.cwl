@@ -20,10 +20,8 @@ $graph:
     outputSource:
     - step_1/results
     type:
-      type: array
-      items:
-        type: array
-        items: Directory
+      Directory[]
+
   steps:
     step_1:
       in:
@@ -33,7 +31,7 @@ $graph:
       - results
       run: '#clt'
       scatter: [input_reference, s_expression]
-      scatterMethod: nested_crossproduct
+      scatterMethod: flat_crossproduct
 
 
 - baseCommand: s-expression
@@ -75,6 +73,6 @@ cwlVersion: v1.0
 
 $namespaces:
   s: https://schema.org/
-s:softwareVersion: 0.1.0
+s:softwareVersion: 0.2.0
 schemas:
 - http://schema.org/version/9.0/schemaorg-current-http.rdf
