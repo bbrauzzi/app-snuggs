@@ -13,7 +13,7 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install cwltool
-      - run: cwltool --validate app-package.cwl#s-expression
+      - run: cwltool --validate app-package.cwl#snuggs
 
   version:
     needs: validate
