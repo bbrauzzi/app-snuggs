@@ -65,7 +65,7 @@ $graph:
     ResourceRequirement: {}
     InlineJavascriptRequirement: {}
     DockerRequirement:
-      dockerPull: snuggs:latest
+      dockerPull: eoepca/snuggs:0.3.0
   #stderr: std.err
   #stdout: std.out
 
