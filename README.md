@@ -51,7 +51,7 @@ Options:
 ### Build the container
 
 ```console
-docker built . -t snuggs
+docker build . -t snuggs
 ```
 
 ### Execution
