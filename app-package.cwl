@@ -2,7 +2,7 @@ $graph:
 
 - class: Workflow
   doc: Applies s expressions to EO acquisitions
-  id: snuggs
+  id: this_identifier_is_too_long_for_some_reason
   requirements:
   - class: ScatterFeatureRequirement
   inputs:
